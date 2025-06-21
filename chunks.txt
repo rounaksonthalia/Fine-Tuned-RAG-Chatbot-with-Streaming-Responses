@@ -1,0 +1,19 @@
+# Vector embedding
+
+def vector_embedding():
+
+    #if "vectors" not in st.session_state:
+
+    loader = PyPDFLoader("AI Training Document.pdf")
+    docs   = loader.load()
+    splitter = RecursiveCharacterTextSplitter(chunk_size=300,chunk_overlap=50,separators=[". ","? ","! ","\n\n","\n"," ",""],)
+    chunks = splitter.split_documents(docs)
+
+    if not chunks:
+        st.error("No document chunks to embed — check your loader & splitter settings")
+        return
+
+    # now safe to embed
+    embedding_model = OllamaEmbeddings(model="nomic-embed-text")
+    st.session_state.vectors = FAISS.from_documents(chunks, embedding_model)
+    st.success("Vector store DB is ready")
