@@ -30,4 +30,4 @@ Expandable panel showing source chunks used
 
 Sidebar details (model name, number of indexed chunks)
 
-Reset button to clear chat history without rebuilding embeddings fileciteturn0file0.
+Reset button to clear chat history without rebuilding embeddings.
